@@ -30,7 +30,35 @@ class HashTable {
     }
   }
 
-  
+  getKeys() {
+    const keys =[]
+
+    for (let i = 0; i < this.data.length; i++) {
+      if(this.data[i].length === 1) {
+        keys.push(this.data[0][0][0])
+      } else {
+        for (let j = 0; j < this.data[i].length; j++) {
+          keys.push(this.data[i][j][0])
+        }
+      }
+    }
+    return keys
+  }
+
+  getValues() {
+    const values =[]
+
+    for (let i = 0; i < this.data.length; i++) {
+      if(this.data[i].length === 1) {
+        values.push(this.data[0][0][1])
+      } else {
+        for (let j = 0; j < this.data[i].length; j++) {
+          values.push(this.data[i][j][1])
+        }
+      }
+    }
+    return values
+  }
 }
 
 const hash = new HashTable(2)
@@ -39,9 +67,12 @@ hash.set('grapes', 1000)
 hash.set('apple', 100)
 hash.set('peanuts', 10)
 
-console.log(hash.get('grapes'))
-console.log(hash.get('apple'))
-console.log(hash.get('peanuts'))
+// console.log(hash.get('grapes'))
+// console.log(hash.get('apple'))
+// console.log(hash.get('peanuts'))
+
+console.log(...hash.getKeys())
+console.log(...hash.getValues())
 
 
-console.log(...hash.data)
+// console.log(...hash.data)
