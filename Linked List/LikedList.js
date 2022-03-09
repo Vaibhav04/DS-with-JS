@@ -124,6 +124,7 @@ class LinkedList {
   }
 
   static printFromGivenNode(node) {
+    if (node === null) return node;
     while (node !== null) {
       console.log(node.val);
       node = node.next;
