@@ -1,31 +1,35 @@
-class Node {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-}
-
+const { Node } = require('./SinglyNode');
 class LinkedList {
   constructor(val) {
-    this.head = {
-      val,
-      next: null,
-    };
+    // If value is given then, create the head.
+    // Else set it to null
+    this.head = val
+      ? {
+          val: val,
+          next: null,
+        }
+      : null;
     this.tail = this.head;
     this.length = 1;
   }
 
   append(val) {
+    // console.log(val);
     const newNode = new Node(val);
     this.tail.next = newNode;
     this.tail = newNode;
 
     this.length++;
+    // console.log(newNode);
   }
 
   prepend(val) {
     const newNode = new Node(val);
     newNode.next = this.head;
+    // If linked list is empty
+    if (this.head === null) {
+      this.tail = newNode;
+    }
     this.head = newNode;
     this.length++;
   }
@@ -121,6 +125,17 @@ class LinkedList {
 
     this.tail = this.head;
     this.head = prevNode;
+  }
+
+  convertArrayToLinkedList(values) {
+    for (let i = 0; i < values.length; i++) {
+      const element = values[i];
+      if (i === 0) {
+        this.prepend(element);
+      } else {
+        this.append(element);
+      }
+    }
   }
 
   static printFromGivenNode(node) {
