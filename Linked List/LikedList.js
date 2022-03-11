@@ -10,7 +10,7 @@ class LinkedList {
         }
       : null;
     this.tail = this.head;
-    this.length = 1;
+    this.length = val ? 1 : 0;
   }
 
   append(val) {
