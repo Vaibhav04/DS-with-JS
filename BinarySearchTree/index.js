@@ -1,14 +1,8 @@
-class BinaryTreeNode {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
+const BinaryTreeNode = require('./BinaryTreeNode');
 
 class BinarySearchTree {
   constructor() {
-    this.root = null
+    this.root = null;
   }
 
   insert(value) {
@@ -17,7 +11,7 @@ class BinarySearchTree {
     // If tree empty
     if (this.root === null) {
       this.root = newNode;
-      return
+      return;
     }
 
     let temp = this.root;
@@ -34,21 +28,20 @@ class BinarySearchTree {
     }
 
     if (value <= prev.value) {
-      prev.left = newNode
+      prev.left = newNode;
     } else {
       prev.right = newNode;
     }
-
   }
 
   lookup(value) {
     if (this.root === null) {
-      return null
+      return null;
     }
     let temp = this.root;
     while (temp != null) {
       if (value === temp.value) {
-        return value
+        return value;
       } else if (value < temp.value) {
         temp = temp.left;
       } else {
@@ -77,31 +70,24 @@ class BinarySearchTree {
           if (parentNode === null) {
             this.root = currentNode.left;
           } else {
-
             if (currentNode.value < parentNode.value) {
               parentNode.left = currentNode.left;
-
             } else if (currentNode.value > parentNode.value) {
               parentNode.right = currentNode.left;
             }
           }
-
         } else if (currentNode.right.left === null) {
           currentNode.right.left = currentNode.left;
           if (parentNode === null) {
             this.root = currentNode.right;
           } else {
-
             if (currentNode.value < parentNode.value) {
               parentNode.left = currentNode.right;
-
             } else if (currentNode.value > parentNode.value) {
               parentNode.right = currentNode.right;
             }
           }
-
         } else {
-
           let leftmost = currentNode.right.left;
           let leftmostParent = currentNode.right;
           while (leftmost.left !== null) {
@@ -130,18 +116,18 @@ class BinarySearchTree {
 
   bfs() {
     const queue = [];
-    const res = []
+    const res = [];
     let tempNode = this.root;
     queue.push(tempNode);
 
     while (queue.length) {
       tempNode = queue.shift();
-      res.push(tempNode.value)
+      res.push(tempNode.value);
       if (tempNode.left) {
-        queue.push(tempNode.left)
+        queue.push(tempNode.left);
       }
       if (tempNode.right) {
-        queue.push(tempNode.right)
+        queue.push(tempNode.right);
       }
     }
     return res;
@@ -149,64 +135,63 @@ class BinarySearchTree {
 
   bfsRecursive(queue, list) {
     if (!queue.length) {
-      return list
+      return list;
     }
 
     let tempNode = queue.shift();
-    list.push(tempNode.value)
+    list.push(tempNode.value);
     if (tempNode.left) {
-      queue.push(tempNode.left)
+      queue.push(tempNode.left);
     }
     if (tempNode.right) {
-      queue.push(tempNode.right)
+      queue.push(tempNode.right);
     }
 
-    return this.bfsRecursive(queue, list)
+    return this.bfsRecursive(queue, list);
   }
 
   dfsInorder(node, list) {
-    if(node === null) {
+    if (node === null) {
       return;
     }
-    if(node.left) {
-      this.dfsInorder(node.left, list)
+    if (node.left) {
+      this.dfsInorder(node.left, list);
     }
-    console.log(list)
-    list.push(node.value)
-    if(node.right) {
-      this.dfsInorder(node.right, list)
+    console.log(list);
+    list.push(node.value);
+    if (node.right) {
+      this.dfsInorder(node.right, list);
     }
     return list;
-
   }
 
   dfsPreorder(node, list) {
-    if(node === null) {
+    if (node === null) {
       return;
     }
-    console.log(list)
-    list.push(node.value)
-    if(node.left) {
-      this.dfsPreorder(node.left, list)
+    console.log(list);
+    list.push(node.value);
+    if (node.left) {
+      this.dfsPreorder(node.left, list);
     }
-    if(node.right) {
-      this.dfsPreorder(node.right, list)
+    if (node.right) {
+      this.dfsPreorder(node.right, list);
     }
     return list;
   }
 
   dfsPostorder(node, list) {
-    if(node === null) {
+    if (node === null) {
       return;
     }
-    if(node.left) {
-      this.dfsPostorder(node.left, list)
+    if (node.left) {
+      this.dfsPostorder(node.left, list);
     }
-    if(node.right) {
-      this.dfsPostorder(node.right, list)
+    if (node.right) {
+      this.dfsPostorder(node.right, list);
     }
-    console.log(list)
-    list.push(node.value)
+    console.log(list);
+    list.push(node.value);
     return list;
   }
 
@@ -214,13 +199,19 @@ class BinarySearchTree {
     const inOrderTree = this.dfsInorder(node);
 
     let i = 0;
-    while(i < inOrderTree.length-1) {
-      if(!(inOrderTree[i] < inOrderTree[i+1])) {
-        return false
+    while (i < inOrderTree.length - 1) {
+      if (!(inOrderTree[i] < inOrderTree[i + 1])) {
+        return false;
       }
       i++;
     }
-    return true
+    return true;
+  }
+
+  constructBST(values) {
+    for (const val of values) {
+      bst.insert(val);
+    }
   }
 }
 
@@ -235,15 +226,15 @@ bst.insert(1);
 
 // console.log(bst.lookup(21))
 
-console.log(JSON.stringify(bst))
+console.log(JSON.stringify(bst));
 
 // console.log(bst.bfs())
 // console.log(bst.bfsRecursive([bst.root], []))
 
 // console.log(bst.dfsInorder(bst.root, []))
-console.log(bst.dfsPreorder(bst.root, []))
-console.log(bst.dfsPostorder(bst.root, []))
+console.log(bst.dfsPreorder(bst.root, []));
+console.log(bst.dfsPostorder(bst.root, []));
 
 module.exports = {
-  BinarySearchTree
-}
+  BinarySearchTree,
+};
