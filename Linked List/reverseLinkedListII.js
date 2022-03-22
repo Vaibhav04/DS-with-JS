@@ -14,6 +14,14 @@ const ll = new LinkedList();
 ll.convertArrayToLinkedList([1, 2, 3, 4, 5]);
 // console.log(ll);
 
+/** Solution
+ * 1. Get the node at ith position, also keep track of its prev position.( Decrement both left and right).
+ * 2. Store "prev" node in new variable ("prevHeadNode"), it will be needed to store the head of reversed list in its next reference. Also, keep track of current node in another variable ("tail") too because it will be our new tail and will also be needed in the end to update its next to the next of last node of the list to be reversed.
+ * 3. Traverse and keep reversing till the right position while also maintaining prev, current and nextNode.
+ * 4. In the end, we need to update the "prevNodehead.next" to "prev" if we did't reverse the list from the start, else we need to update the head to "prev".
+ * 5. Also update the "tail.next" to "current" as discussed in step 2.
+ */
+// O(n) time O(1) space complexity
 var reverseBetween = function (head, left, right) {
   if (head === null) return head;
 
