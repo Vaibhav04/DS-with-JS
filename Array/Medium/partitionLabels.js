@@ -15,7 +15,7 @@
 
 /** Solution
  * 1. Get the last occurrence of each characters and store in a map.
- * 2. Traverse the string and update "end" if you find a character whose last index is more than index of current character.
+ * 2. Traverse the string and update "end" if you find a character whose last index is more than last index of any character found so far.
  * 3. Increase the size (The length of string that can be partitioned) as you traverse.
  * 4. Once index reaches end, it means this partition can be made. Push the size in result array.
  * 5. Find next partition.
