@@ -8,9 +8,7 @@ const reverse = (str) => {
     right = str.length - 1;
 
   while (left <= right) {
-    let temp = str[left];
-    str[left] = str[right];
-    str[right] = temp;
+    [str[left], str[right]] = [str[right], str[left]];
     left++;
     right--;
   }
