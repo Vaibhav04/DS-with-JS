@@ -8,6 +8,12 @@
 // Input: nums = [1], k = 1
 // Output: [1]
 
+/** Explanation
+ * First, we will store frequency of every elements in map.Also, we will keep record of maximum number of time a number is repeating and will use it later to evaluate the result.
+ * Secondly, we will put numbers in list of same frequency in another hashmap.
+ * Lastly, we will keep poping the numbers from maximum frequency from our second hashmap untill k numbers has been popped out.
+ */
+
 // Return the first highest, second highest and so on...
 // O(n) time and O(n) space complexity solution.
 var topKFrequent = function (nums, k) {
