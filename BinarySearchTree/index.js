@@ -1,4 +1,4 @@
-const BinaryTreeNode = require('./BinaryTreeNode');
+const { BinaryTreeNode } = require('./BinaryTreeNode');
 
 class BinarySearchTree {
   constructor() {
@@ -114,10 +114,10 @@ class BinarySearchTree {
     }
   }
 
-  bfs() {
+  bfs(node = this.root) {
     const queue = [];
     const res = [];
-    let tempNode = this.root;
+    let tempNode = node;
     queue.push(tempNode);
 
     while (queue.length) {
@@ -157,7 +157,7 @@ class BinarySearchTree {
     if (node.left) {
       this.dfsInorder(node.left, list);
     }
-    console.log(list);
+    // console.log(list);
     list.push(node.value);
     if (node.right) {
       this.dfsInorder(node.right, list);
@@ -169,7 +169,7 @@ class BinarySearchTree {
     if (node === null) {
       return;
     }
-    console.log(list);
+    // console.log(list);
     list.push(node.value);
     if (node.left) {
       this.dfsPreorder(node.left, list);
@@ -190,7 +190,7 @@ class BinarySearchTree {
     if (node.right) {
       this.dfsPostorder(node.right, list);
     }
-    console.log(list);
+    // console.log(list);
     list.push(node.value);
     return list;
   }
@@ -210,30 +210,30 @@ class BinarySearchTree {
 
   constructBST(values) {
     for (const val of values) {
-      bst.insert(val);
+      this.insert(val);
     }
   }
 }
 
-const bst = new BinarySearchTree();
-bst.insert(9);
-bst.insert(4);
-bst.insert(6);
-bst.insert(20);
-bst.insert(170);
-bst.insert(15);
-bst.insert(1);
+// const bst = new BinarySearchTree();
+// bst.insert(9);
+// bst.insert(4);
+// bst.insert(6);
+// bst.insert(20);
+// bst.insert(170);
+// bst.insert(15);
+// bst.insert(1);
 
 // console.log(bst.lookup(21))
 
-console.log(JSON.stringify(bst));
+// console.log(JSON.stringify(bst));
 
 // console.log(bst.bfs())
 // console.log(bst.bfsRecursive([bst.root], []))
 
 // console.log(bst.dfsInorder(bst.root, []))
-console.log(bst.dfsPreorder(bst.root, []));
-console.log(bst.dfsPostorder(bst.root, []));
+// console.log(bst.dfsPreorder(bst.root, []));
+// console.log(bst.dfsPostorder(bst.root, []));
 
 module.exports = {
   BinarySearchTree,
